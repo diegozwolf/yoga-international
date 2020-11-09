@@ -1,4 +1,7 @@
 # Setup
+
+**Please do not fork this repo. This will keep your solution private.** Instead, please clone the project into a new repository and share it with us when you are finished.
+
 This repo was created for use on macOS and tested in the Chrome browser.
 
 From the repo root open one tab and run:
