@@ -7,10 +7,7 @@ import {
   ArticleScreenQueryVariables
 } from "../graphql";
 import { ErrorMessage, Loading, CenterContents } from "../components";
-
-interface Props {
-  id: string;
-}
+import {Props} from  "./../types";
 
 export const ArticleScreen: React.FC<Props> = ({ id }) => {
   const { data, error, loading } = useQuery<
