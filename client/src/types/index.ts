@@ -1,8 +1,16 @@
 import { ClassScreenQuery, CourseScreenQuery, ArticleScreenQuery, MeditationScreenQuery } from "../graphql";
+import { FavoriteContent } from "../screens/FavoritesScreen/types";
+
 export * from './utils';
 
 export interface Props {
     id: string;
+    content?: FavoriteContent ;
+}
+
+export interface PropsB {
+    id?: string;
+    content?: FavoriteContent ;
 }
 
 export interface PropsClass {
@@ -18,4 +26,4 @@ export interface PropsArticle {
 
 export interface PropsMeditation {
     content: MeditationScreenQuery["Meditation"];
-}
+  }

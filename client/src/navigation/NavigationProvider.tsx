@@ -14,13 +14,15 @@ import { ErrorMessage } from "../components";
 import React, { createContext, useState } from "react";
 import {
   Props,
+  PropsB,
   PropsClass,
   PropsCourses,
   PropsArticle,
   PropsMeditation,
 } from "./../types";
 
-type TSFixMe = {
+
+type TSElements = {
   HomeScreen: React.FC;
   DownloadsScreen: React.FC;
   ClassScreen: React.FC<Props>;
@@ -47,10 +49,10 @@ type TSOptions =
 
 type TSRoute = {
   route: TSOptions;
-  params?: Props | (PropsClass | PropsCourses | PropsArticle | PropsMeditation);
+  params?: Props | PropsB;
 };
 
-const routes: TSFixMe = {
+const routes: TSElements = {
   HomeScreen,
   DownloadsScreen,
   ClassScreen,
@@ -95,7 +97,7 @@ export const NavigationContext = createContext<{
 });
 
 export const NavigationProvider: React.FC = ({ children }) => {
-  const [activeRoute, setActiveRoute] = useState<TSRoute>(initialRoute);
+  const [activeRoute, setActiveRoute] = useState<TSRoute>(initialRoute); 
   const DefaultScreen: React.FC = () => {
     return <h1>Error</h1>;
   };
