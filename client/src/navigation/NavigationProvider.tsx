@@ -71,21 +71,6 @@ let myMap = new Map<string, React.FC>([
   ["DownloadsScreen", DownloadsScreen],
 ]);
 
-interface TSRoutes {
-  page: string;
-  component: React.FC;
-}
-enum Pages {
-  HomeScreen = "Homescreen",
-}
-
-const routesT: TSRoutes[] = [
-  {
-    page: Pages.HomeScreen,
-    component: HomeScreen,
-  },
-];
-
 const initialRoute: TSRoute = { route: "HomeScreen", params: { id: "0" } };
 
 export const NavigationContext = createContext<{
@@ -98,9 +83,6 @@ export const NavigationContext = createContext<{
 
 export const NavigationProvider: React.FC = ({ children }) => {
   const [activeRoute, setActiveRoute] = useState<TSRoute>(initialRoute); 
-  const DefaultScreen: React.FC = () => {
-    return <h1>Error</h1>;
-  };
 
   const ScreenComponent = myMap.get(activeRoute.route);
   console.log(ScreenComponent);

@@ -4,10 +4,10 @@ import { Favorite, Class, Meditation, Course, Article } from "./types";
 import { FavoritesSection } from "./FavoritesSection";
 
 type FavoritesByType = {
-  classes: Favorite<Class>[];
-  meditations: Favorite<Meditation>[];
-  articles: Favorite<Article>[];
-  courses: Favorite<Course>[];
+  classes: Favorite<any>[];
+  meditations: Favorite<any>[];
+  articles: Favorite<any>[];
+  courses: Favorite<any>[];
 };
 
 const getFavoritesByType = (favorites: Favorite[]) => {
