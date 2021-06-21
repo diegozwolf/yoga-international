@@ -8,51 +8,14 @@ import {
   ClassPlayerScreen,
   CoursePlayerScreen,
   ArticlePlayerScreen,
-  MeditationPlayerScreen,
+  MeditationPlayerScreen
 } from "../screens";
 import { ErrorMessage } from "../components";
 import React, { createContext, useState } from "react";
-import {
-  Props,
-  PropsB,
-  PropsClass,
-  PropsCourses,
-  PropsArticle,
-  PropsMeditation,
-} from "./../types";
 
+type TSFixMe = any;
 
-type TSElements = {
-  HomeScreen: React.FC;
-  DownloadsScreen: React.FC;
-  ClassScreen: React.FC<Props>;
-  MeditationScreen: React.FC<Props>;
-  CourseScreen: React.FC<Props>;
-  ArticleScreen: React.FC<Props>;
-  ClassPlayerScreen: React.FC<PropsClass>;
-  CoursePlayerScreen: React.FC<PropsCourses>;
-  ArticlePlayerScreen: React.FC<PropsArticle>;
-  MeditationPlayerScreen: React.FC<PropsMeditation>;
-};
-
-type TSOptions =
-  | "HomeScreen"
-  | "DownloadsScreen"
-  | "ClassScreen"
-  | "MeditationScreen"
-  | "CourseScreen"
-  | "ArticleScreen"
-  | "ClassPlayerScreen"
-  | "CoursePlayerScreen"
-  | "ArticlePlayerScreen"
-  | "MeditationPlayerScreen";
-
-type TSRoute = {
-  route: TSOptions;
-  params?: Props | PropsB;
-};
-
-const routes: TSElements = {
+const routes: TSFixMe = {
   HomeScreen,
   DownloadsScreen,
   ClassScreen,
@@ -62,42 +25,33 @@ const routes: TSElements = {
   ClassPlayerScreen,
   CoursePlayerScreen,
   ArticlePlayerScreen,
-  MeditationPlayerScreen,
+  MeditationPlayerScreen
 };
-
-
-let myMap = new Map<string, React.FC>([
-  ["HomeScreen", HomeScreen],
-  ["DownloadsScreen", DownloadsScreen],
-]);
-
-const initialRoute: TSRoute = { route: "HomeScreen", params: { id: "0" } };
+const initialRoute = { route: "HomeScreen", params: {} };
 
 export const NavigationContext = createContext<{
-  activeRoute: TSRoute;
-  setActiveRoute: (a: TSRoute) => void;
+  activeRoute: TSFixMe;
+  setActiveRoute: (a: TSFixMe) => void;
 }>({
   activeRoute: initialRoute,
-  setActiveRoute: () => console.warn("Missing navigation provider"),
+  setActiveRoute: () => console.warn("Missing navigation provider")
 });
 
 export const NavigationProvider: React.FC = ({ children }) => {
-  const [activeRoute, setActiveRoute] = useState<TSRoute>(initialRoute); 
-
-  const ScreenComponent = myMap.get(activeRoute.route);
-  console.log(ScreenComponent);
+  const [activeRoute, setActiveRoute] = useState<TSFixMe>(initialRoute);
+  const ScreenComponent = routes[activeRoute.route];
   if (!ScreenComponent) return <ErrorMessage msg="Missing ScreenComponent!" />;
 
   return (
     <NavigationContext.Provider
       value={{
         activeRoute,
-        setActiveRoute,
+        setActiveRoute
       }}
     >
       {children}
       <div style={{ padding: 30 }}>
-        <ScreenComponent />
+        <ScreenComponent {...activeRoute.params} />
       </div>
     </NavigationContext.Provider>
   );
